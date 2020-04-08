@@ -21,7 +21,7 @@ function App() {
           <Link to = "/getCustomer" className="nav-link">Get Customers</Link>
         </li>
         <li className="nav-item">
-          <Link to = "/updateCustomer" className="nav-link">update Customers</Link>
+          <Link to = "/updateCustomer" className="nav-link">Update Customers</Link>
         </li>
         <li className="nav-item">
           <Link to = "/deleteCustomer" className="nav-link">Delete Customers</Link>
