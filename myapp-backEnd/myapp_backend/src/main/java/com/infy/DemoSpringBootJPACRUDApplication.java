@@ -8,7 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.core.env.Environment;
 
 import com.infy.model.Customer;
-import com.infy.model.CustomerType;
 import com.infy.service.CustomerServiceImpl;
 
 @SpringBootApplication
@@ -39,7 +38,6 @@ public class DemoSpringBootJPACRUDApplication implements CommandLineRunner {
 		customer.setEmailId("Harry@infy.com");
 		customer.setName("Harry");
 		customer.setDateOfBirth(LocalDate.now());
-		customer.setCustomerType(CustomerType.GOLD);
 
 		try {
 			Integer id = customerService.addCustomer(customer);
@@ -60,7 +58,6 @@ public class DemoSpringBootJPACRUDApplication implements CommandLineRunner {
 			System.out.println("Customer id : " + customer.getCustomerId());
 			System.out.println("Customer name : " + customer.getName());
 			System.out.println("Customer email : " + customer.getEmailId());
-			System.out.println("Customer type : " + customer.getCustomerType());
 		} catch (Exception e) {
 
 			if (e.getMessage() != null)

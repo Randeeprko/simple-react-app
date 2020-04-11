@@ -4,26 +4,26 @@ import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.infy.model.CustomerType;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 
 @Entity
 @Table(name="Customer")
 public class CustomerEntity {
 
 	@Id
-	
 	private Integer customerId;
 	@Column(name="emailid")
 	private String emailId;
 	private String name;
-	
+	@JsonFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dateOfBirth;
-	@Enumerated
-	private CustomerType customerType;
 	
 	public Integer getCustomerId() {
 		return customerId;
@@ -55,13 +55,5 @@ public class CustomerEntity {
 
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
-	}
-
-	public CustomerType getCustomerType() {
-		return customerType;
-	}
-
-	public void setCustomerType(CustomerType customerType) {
-		this.customerType = customerType;
 	}
 }

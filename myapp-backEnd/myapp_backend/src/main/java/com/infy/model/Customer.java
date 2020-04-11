@@ -9,7 +9,6 @@ public class Customer {
 	private String emailId;
 	private String name;
 	private LocalDate dateOfBirth;
-	private CustomerType customerType;
 
 	public Integer getCustomerId() {
 		return customerId;
@@ -41,14 +40,6 @@ public class Customer {
 
 	public void setDateOfBirth(LocalDate dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
-	}
-
-	public CustomerType getCustomerType() {
-		return customerType;
-	}
-
-	public void setCustomerType(CustomerType customerType) {
-		this.customerType = customerType;
 	}
 
 	

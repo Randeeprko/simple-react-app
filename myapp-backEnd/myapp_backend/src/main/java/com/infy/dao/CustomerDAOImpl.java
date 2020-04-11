@@ -21,7 +21,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 		entity.setDateOfBirth(customer.getDateOfBirth());
 		entity.setEmailId(customer.getEmailId());
 		entity.setName(customer.getName());
-		entity.setCustomerType(customer.getCustomerType());
 		entityManager.persist(entity);
 
 		customerId = entity.getCustomerId();
@@ -41,7 +40,6 @@ public class CustomerDAOImpl implements CustomerDAO {
 			customer.setDateOfBirth(customerEntity.getDateOfBirth());
 			customer.setEmailId(customerEntity.getEmailId());
 			customer.setName(customerEntity.getName());
-			customer.setCustomerType(customerEntity.getCustomerType());
 		}
 
 		return customer;
