@@ -1,7 +1,8 @@
 import React,{Component} from 'react'
 import axios from 'axios'
+import {withRouter} from 'react-router-dom'
 
-const getUrl = "http://localhost:5564/rkobank/customers/12345";
+const getUrl = "http://localhost:5564/rkobank/customers/";
 class getCustomer extends Component {
     constructor(props){
         super(props);
@@ -17,13 +18,14 @@ class getCustomer extends Component {
     }
     
     fetchCustomer = () => {
-     axios.get(getUrl)
+        let cId = this.props.match.params.customerId;
+        axios.get(getUrl+cId)
      .then((response) => {
          console.table([response.data]);
          this.setState({customerData:response.data, errorMessage: ''})
      }).catch((error) => {
         if(error.response){
-            this.setState({errorMessage:error.response.data,successMessage:''})
+            this.setState({errorMessage:error.response.data.message,successMessage:''})
             console.table([error.response])
           }
           else
@@ -41,11 +43,11 @@ class getCustomer extends Component {
         <h3 align="center" className="text-primary">Customers Details</h3>
                              </div>
                              <div className = "card-body">
-                                 { customerData ? 
+                                 { Object.keys(customerData).length ? 
                                        <table className="table table-hover table-striped">
                                            <thead>
                                                <tr>
-                                                   <th>Customer ID</th>
+                                                   <th>Customer Id</th>
                                                    <th>Name</th>
                                                    <th>Email Id</th>
                                                    <th>Date Of Birth</th>
@@ -72,4 +74,4 @@ class getCustomer extends Component {
     }
 }
 
-export default getCustomer;
+export default withRouter(getCustomer);
