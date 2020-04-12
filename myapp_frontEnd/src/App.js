@@ -35,7 +35,7 @@ function App() {
       <Switch>
     {/*  <Route exact path = "/" render={() => <Redirect to="/myinfo" />}></Route> */} 
      <Route exact path = "/" render = {() => <h3>Hi Welcome to my website</h3>}  />
-     <Route path = "/addCustomer" component ={addCustomer} ></Route>
+     <Route path = "/addCustomer/:customerId" component ={addCustomer} ></Route>
      <Route path = "/getCustomer" component={getCustomer}></Route> 
      <Route path = "/updateCustomer" component ={updateCustomer} ></Route>
      <Route path = "/deleteCustomer" component={deleteCustomer}></Route>    
