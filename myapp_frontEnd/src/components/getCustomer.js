@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import axios from 'axios'
 
-const getUrl = "http://localhost:5564/rkobank/customers/12";
+const getUrl = "http://localhost:5564/rkobank/customers/12345";
 class getCustomer extends Component {
     constructor(props){
         super(props);
