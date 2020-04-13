@@ -37,7 +37,7 @@ function App() {
      <Route exact path = "/" render = {() => <h3>Hi Welcome to my website</h3>}  />
      <Route path = "/addCustomer" component ={addCustomer} ></Route>
      <Route path = "/getCustomer/:customerId" component={getCustomer}></Route> 
-     <Route path = "/updateCustomer" component ={updateCustomer} ></Route>
+     <Route path = "/updateCustomer/:customerId" component ={updateCustomer} ></Route>
      <Route path = "/deleteCustomer" component={deleteCustomer}></Route>    
       </Switch>
     </div>
