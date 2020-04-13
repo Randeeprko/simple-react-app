@@ -38,7 +38,7 @@ function App() {
      <Route path = "/addCustomer" component ={addCustomer} ></Route>
      <Route path = "/getCustomer/:customerId" component={getCustomer}></Route> 
      <Route path = "/updateCustomer/:customerId" component ={updateCustomer} ></Route>
-     <Route path = "/deleteCustomer" component={deleteCustomer}></Route>    
+     <Route path = "/deleteCustomer/:customerId" component={deleteCustomer}></Route>    
       </Switch>
     </div>
 
