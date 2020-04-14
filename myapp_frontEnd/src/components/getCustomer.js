@@ -2,7 +2,7 @@ import React,{Component} from 'react'
 import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 
-const getUrl = "http://localhost:5564/rkobank/customers/";
+const getUrl = "http://localhost:5565/rkobank/customers/";
 class getCustomer extends Component {
     constructor(props){
         super(props);

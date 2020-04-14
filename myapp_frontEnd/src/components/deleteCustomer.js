@@ -16,7 +16,7 @@ class deleteCustomer extends Component {
     
         submitBooking = () => {
             var{customerId} = this.state
-             axios.delete('http://localhost:5564/rkobank/customers/'+customerId)
+             axios.delete('http://localhost:5565/rkobank/customers/'+customerId)
              .then((response) => {
                console.table([response.data]); // This will print response data received from web service.
             this.setState({successMessage:response.data,errorMessage:''})

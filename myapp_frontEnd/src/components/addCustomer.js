@@ -107,7 +107,7 @@ class addCustomer extends Component {
     
     submitBooking = () => {
        var{formValue} = this.state
-        axios.post('http://localhost:5564/rkobank/customers',formValue)
+        axios.post('http://localhost:5565/rkobank/customer',formValue)
         .then((response) => {
           console.table([response.data]); // This will print response data received from web service.
        this.setState({successMessage:response.data,errorMessage:''})

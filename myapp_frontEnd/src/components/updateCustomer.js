@@ -64,7 +64,7 @@ class updateCustomer extends Component {
 
     submitBooking = () => {
         var{formValue} = this.state
-         axios.put('http://localhost:5564/rkobank/customers/'+this.state.formValue.customerId,formValue)
+         axios.put('http://localhost:5565/rkobank/customers/'+this.state.formValue.customerId,formValue)
          .then((response) => {
            console.table([response.data]); // This will print response data received from web service.
         this.setState({successMessage:response.data,errorMessage:''})

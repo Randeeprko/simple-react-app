@@ -15,16 +15,16 @@ function App() {
           <Link to = {'/'} className="nav-link">Home</Link>
         </li>
         <li className="nav-item">
-          <Link to = "/addCustomer" className="nav-link" >Add Customers</Link>
+          <Link to = "/addCustomer" className="nav-link" >Add Customer</Link>
         </li>
         <li className="nav-item">
-          <Link to = "/getCustomer" className="nav-link">Get Customers</Link>
+          <Link to = "/getCustomer" className="nav-link">Get Customer</Link>
         </li>
         <li className="nav-item">
-          <Link to = "/updateCustomer" className="nav-link">Update Customers</Link>
+          <Link to = "/updateCustomer" className="nav-link">Update Customer</Link>
         </li>
         <li className="nav-item">
-          <Link to = "/deleteCustomer" className="nav-link">Delete Customers</Link>
+          <Link to = "/deleteCustomer" className="nav-link">Delete Customer</Link>
         </li>
     </ul>
      
