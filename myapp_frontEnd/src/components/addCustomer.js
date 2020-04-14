@@ -117,7 +117,7 @@ class addCustomer extends Component {
             console.table([error.response])
           }
           else
-            this.setState({errorMessage:error.message+"Plz run the backend",successMessage:''})
+            this.setState({errorMessage:error.message+" Plz run the backend",successMessage:''})
       })
       
       
