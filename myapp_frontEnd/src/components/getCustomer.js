@@ -3,7 +3,7 @@ import axios from 'axios'
 import {withRouter} from 'react-router-dom'
 
 const getUrl = "http://localhost:5565/rkobank/customers/";
-class getCustomer extends Component {
+class GetCustomer extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -29,7 +29,7 @@ class getCustomer extends Component {
             console.table([error.response])
           }
           else
-            this.setState({errorMessage:"Could not fetch booking data",successMessage:''})
+            this.setState({errorMessage:"Could not fetch customers data",successMessage:''})
      })
     }
     render(){
@@ -74,4 +74,4 @@ class getCustomer extends Component {
     }
 }
 
-export default withRouter(getCustomer);
+export default withRouter(GetCustomer);

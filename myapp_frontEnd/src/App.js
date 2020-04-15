@@ -1,10 +1,10 @@
 import React from 'react';
 import {BrowserRouter as Router,Link,Route,Switch} from 'react-router-dom'
-import addCustomer from './components/addCustomer'
-import getCustomer from './components/getCustomer'
-import updateCustomer from './components/updateCustomer'
-import deleteCustomer from './components/deleteCustomer'
-
+import AddCustomer from './components/addCustomer'
+import GetCustomer from './components/getCustomer'
+import UpdateCustomer from './components/updateCustomer'
+import DeleteCustomer from './components/deleteCustomer'
+import ViewCustomers from './components/viewCustomers'
 function App() {
   return (
     <Router>
@@ -26,6 +26,9 @@ function App() {
         <li className="nav-item">
           <Link to = "/deleteCustomer" className="nav-link">Delete Customer</Link>
         </li>
+        <li className="nav-item">
+          <Link to = "/viewCustomers" className="nav-link">View Customers</Link>
+        </li>
     </ul>
      
      
@@ -35,10 +38,11 @@ function App() {
       <Switch>
     {/*  <Route exact path = "/" render={() => <Redirect to="/myinfo" />}></Route> */} 
      <Route exact path = "/" render = {() => <h3>Hi Welcome to my website</h3>}  />
-     <Route path = "/addCustomer" component ={addCustomer} ></Route>
-     <Route path = "/getCustomer/:customerId" component={getCustomer}></Route> 
-     <Route path = "/updateCustomer/:customerId" component ={updateCustomer} ></Route>
-     <Route path = "/deleteCustomer/:customerId" component={deleteCustomer}></Route>    
+     <Route path = "/addCustomer" component ={AddCustomer} ></Route>
+     <Route path = "/getCustomer/:customerId" component={GetCustomer}></Route> 
+     <Route path = "/updateCustomer/:customerId" component ={UpdateCustomer} ></Route>
+     <Route path = "/deleteCustomer/:customerId" component={DeleteCustomer}></Route>    
+     <Route path = "/viewCustomers" component={ViewCustomers}></Route>    
       </Switch>
     </div>
 

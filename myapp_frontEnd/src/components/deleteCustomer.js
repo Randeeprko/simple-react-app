@@ -1,6 +1,6 @@
 import React,{Component} from 'react'
 import axios from 'axios'
-class deleteCustomer extends Component {
+class DeleteCustomer extends Component {
     constructor(props){
         super(props);
         this.state = {
@@ -26,7 +26,7 @@ class deleteCustomer extends Component {
                  console.table([error.response])
                }
                else
-                 this.setState({errorMessage:error.message+"Plz run the backend",successMessage:''})
+                 this.setState({errorMessage:error.message+" Plz run the backend",successMessage:''})
            })
            
            
@@ -42,4 +42,4 @@ class deleteCustomer extends Component {
     }
 }
 
-export default deleteCustomer;
+export default DeleteCustomer;
