@@ -1,5 +1,7 @@
 import React,{Component} from 'react'
 import axios from 'axios'
+
+const getUrl = "http://localhost:5565/rkobank/customers/";
 class UpdateCustomer extends Component {
     constructor(props){
         super(props);
@@ -22,6 +24,28 @@ class UpdateCustomer extends Component {
         }
     }
 
+    componentDidMount(){
+        this.fetchCustomer();
+    }
+    
+    fetchCustomer = () => {
+        let cId = this.props.match.params.customerId;
+        let eId = "emailId"
+        const {formValue} = this.state
+        axios.get(getUrl+cId)
+     .then((response) => {
+         console.table([response.data]);
+         this.setState({formValue :{...formValue, [eId]:response.data.emailId}, errorMessage: ''})
+     }).catch((error) => {
+        if(error.response){
+            this.setState({errorMessage:error.response.data.message,successMessage:''})
+            console.table([error.response])
+          }
+          else
+            this.setState({errorMessage:"Could not fetch customers data",successMessage:''})
+     })
+    }
+    
     handleChange = (event) => {
         const {name,value} = event.target
         const {formValue} = this.state
@@ -30,7 +54,8 @@ class UpdateCustomer extends Component {
         }})
         this.validateField(name,value)
     }
-
+    
+    
     validateField = (name,value) => {
         const {formErrorMessage,formValid,formValue} = this.state
         if(name === "emailId"){
@@ -80,7 +105,7 @@ class UpdateCustomer extends Component {
        
      }
     render(){
-        const {emailId,successMessage,errorMessage,formValid} = this.state
+        const {formValue,successMessage,errorMessage,formValid} = this.state
         return(
             <div className  = "container">
                 <form onSubmit = {this.handleSubmit}>
@@ -92,7 +117,7 @@ class UpdateCustomer extends Component {
                       onChange = {this.handleChange}
                       type = "email"
                       placeholder = "e.g. rko@gmail.com" 
-                      value = {emailId}></input>
+                      value = {formValue.emailId}></input>
                     </div>
                     <button type = "submit" disabled = {!formValid.buttonActive} className = "btn btn-secondary">Submit</button>
                 </form>
