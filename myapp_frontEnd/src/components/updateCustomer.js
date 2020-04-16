@@ -8,16 +8,22 @@ class UpdateCustomer extends Component {
         this.state = {
               formValue : {
                   customerId : this.props.match.params.customerId,
-                  emailId : ''
+                  emailId : '',
+                  name: '',
+                  dateOfBirth: ''
               },
               formErrorMessage : {
                   customerId : '',
-                  emailId : ''
+                  emailId : '',
+                  name: '',
+                  dateOfBirth: ''
               },
               formValid : {
-                  customerId : false,
-                  emailId : false,
-                  buttonActive : false
+                  customerId : true,
+                  emailId : true,
+                  buttonActive : true,
+                  name: true,
+                  dateOfBirth: true
               },
               errorMessage : "",
               successMessage : ""
@@ -30,12 +36,10 @@ class UpdateCustomer extends Component {
     
     fetchCustomer = () => {
         let cId = this.props.match.params.customerId;
-        let eId = "emailId"
-        const {formValue} = this.state
         axios.get(getUrl+cId)
      .then((response) => {
          console.table([response.data]);
-         this.setState({formValue :{...formValue, [eId]:response.data.emailId}, errorMessage: ''})
+         this.setState({formValue :response.data, errorMessage: ''})
      }).catch((error) => {
         if(error.response){
             this.setState({errorMessage:error.response.data.message,successMessage:''})
@@ -58,25 +62,54 @@ class UpdateCustomer extends Component {
     
     validateField = (name,value) => {
         const {formErrorMessage,formValid,formValue} = this.state
-        if(name === "emailId"){
+        switch(name){
+        case "name":
+            if(value === ""){
+                formErrorMessage.name = "Field required"
+                formValid.name = false
+             }  
+             else if(!(value.match(/^[A-Z][a-z]+ [A-Z][a-z]+$/))){
+                 formErrorMessage.name ="valid name should be of type Virat Kohli"
+                 formValid.name= false 
+             }   
+             else {
+                  formErrorMessage.name = ""
+                  formValid.name = true   
+             }  
+             break;
+          case "emailId":
             if(value === ""){
                 formErrorMessage.emailId = "Field required"
                 formValid.emailId = false
+             } 
+             else if(!(value.match(/^[a-zA-Z0-9]+@[A-Za-z]+(.(com|in))$/))){
+                  formErrorMessage.emailId = "Email Id should be valid"
+                  formValid.emailId = false   
              }  
-             else if(!value.match(/^[a-zA-Z0-9]+@[A-Za-z]+(.(com|in))$/)){
-                 formErrorMessage.emailId ="Email Id should be valid"
-                 formValid.emailId= false 
-             }   
-             else {
-                  formErrorMessage.emailId = ""
-                  formValid.emailId = true  
-             }    
-        }
-        if(formValue.customerId > 0 && formValue.customerId < 99999){
-               formErrorMessage.customerId = ""
-               formValid.customerId = true    
-        }
-        formValid.buttonActive = formValid.emailId && formValid.customerId
+             else{
+                  formErrorMessage.emailId =""
+                  formValid.emailId = true
+             }
+             break;
+          case "dateOfBirth":
+              if(value === ""){
+                  formErrorMessage.dateOfBirth = "Field required"
+                  formValid.dateOfBirth = false
+              }
+              else {
+                  formErrorMessage.dateOfBirth = ""
+                  formValid.dateOfBirth = true
+              }
+              break;
+          default:
+              break;
+      }
+      if(formValue.customerId > 0 && formValue.customerId < 99999){
+        formErrorMessage.customerId = ""
+        formValid.customerId = true    
+      }
+      formValid.buttonActive = formValid.customerId && formValid.name && formValid.emailId && formValid.dateOfBirth
+       
         this.setState({formValid:formValid, formErrorMessage: formErrorMessage})
     }
 
@@ -105,20 +138,31 @@ class UpdateCustomer extends Component {
        
      }
     render(){
-        const {formValue,successMessage,errorMessage,formValid} = this.state
+        const {formValue,successMessage,errorMessage,formValid,formErrorMessage} = this.state
         return(
             <div className  = "container">
                 <form onSubmit = {this.handleSubmit}>
-                    <div className = "form-group">
-                      <label htmlFor = "eId" > Email Id : </label>
-                      <input className = "form-control" 
-                      name = "emailId"
-                      id ="eId"
-                      onChange = {this.handleChange}
-                      type = "email"
-                      placeholder = "e.g. rko@gmail.com" 
-                      value = {formValue.emailId}></input>
-                    </div>
+        <div className = "form-group" >
+        <label htmlFor="cid">Customer Id:  </label>
+        <input className="form-control" placeholder="e.g. - 10000" value={formValue.customerId} type="number" name="customerId"/>
+        <span className="text-danger">{formErrorMessage.customerId}</span>
+        </div>
+        <div className = "form-group" >
+        <label htmlFor="name">Name: </label>
+        <input className="form-control" placeholder="e.g. Randy Orton" value={formValue.name} onChange={this.handleChange} type="text" name="name"/>
+        <span className="text-danger">{formErrorMessage.name}</span>
+        </div>
+        <div className="form-group">
+        <label htmlFor="eId">Email Id </label>
+        <input type="email" name="emailId" id="eId" placeholder="e.g. rko@gmail.com" onChange={this.handleChange} value={formValue.emailId} className="form-control"/>
+        <span className="text-danger">{formErrorMessage.emailId}</span>
+        </div>
+        <div className="form-group">
+        <label htmlFor="dob">Date Of Birth </label>
+        <input type="date" name="dateOfBirth" onChange={this.handleChange} value={formValue.dateOfBirth} className="form-control"/>
+        <span className="text-danger">{formErrorMessage.dateOfBirth}</span>
+        </div>
+      
                     <button type = "submit" disabled = {!formValid.buttonActive} className = "btn btn-secondary">Submit</button>
                 </form>
                 <span className="text-success">{successMessage}</span>
