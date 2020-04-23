@@ -27,7 +27,7 @@ class ViewCustomers extends Component {
             console.table([error.response])
           }
           else
-            this.setState({errorMessage:"Could not fetch booking data",successMessage:''})
+            this.setState({errorMessage:"Could not fetch customer data",successMessage:''})
      })
     }
     render(){

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<!-- File Appender -->
+		<File name="FileAppender" fileName="log/ErrorLog.log" append="true">
+			<PatternLayout
+				pattern="%d{dd-MMM-yyyy HH:mm:ss.SSS}  %level  [%t] %logger{36} [%M] - %msg%n%ex%n" />
+		</File>
+	</Appenders>
+
+	<Loggers>
+		<!-- <Root level="INFO"> <AppenderRef ref="FileAppender" /> </Root> -->
+		<Logger name="com.infy" level="ERROR" additivity="false">
+			<AppenderRef ref="FileAppender" />
+		</Logger>
+
+	</Loggers>
+</Configuration>
